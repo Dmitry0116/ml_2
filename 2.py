@@ -8,13 +8,17 @@ user_input = form.text_area('Введите Ваш текст')
 submit = form.form_submit_button('Определить')
 
 if submit:
-    classifier = pipeline("sentiment-analysis")
-    result = classifier(user_input)[0]
-    label = result['label']
-    score = result['score']
+    clf = pipeline(
+        task = 'text-classification', 
+        model = 'cointegrated/rubert-tiny2-cedr-emotion-detection')
+     
+    result = clf(user_input)
 
-    if label == 'POSITIVE':
-        st.success(f'{label} sentiment (score: {score})')
-    else:
-        st.error(f'{label} sentiment (score: {score})')
+
+    for res in result:
+       label = res['label']
+       score = res['score']
+       st.success(f'{label} sentiment (score: {score})')
+ 
+
         
