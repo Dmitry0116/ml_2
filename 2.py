@@ -1,7 +1,7 @@
 import streamlit as st
 from transformers import pipeline
 
-st.title('Приложение определяет настроение в предложениях на русском языке.')
+st.title('Приложение определяет эмоции в предложениях на русском языке.')
 
 form = st.form(key='sentiment-form')
 user_input = form.text_area('Введите Ваш текст')
